@@ -36,7 +36,7 @@ public class UserProfileDAOImpl extends AbstractDAO implements UserProfileDAO
 	{
 		BasicUserProfile profile = super.executeSPQuery(RETRIEVE_PROFILE_SP, 1, (stmt) -> {
 			stmt.setString(1, userId);
-		}, (rs) -> {
+		}, (rs, call) -> {
 			return new BasicUserProfile(rs.getString(FIRST_NAME), rs.getString(LAST_NAME), rs.getString(EMAIL_ID));
 		});
 
