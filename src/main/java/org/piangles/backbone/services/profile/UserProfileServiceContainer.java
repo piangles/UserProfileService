@@ -22,7 +22,7 @@ public class UserProfileServiceContainer extends AbstractContainer
 
 	public UserProfileServiceContainer()
 	{
-		super("UserProfileService");
+		super(UserProfileService.NAME);
 	}
 	
 	@Override
