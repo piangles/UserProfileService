@@ -11,7 +11,7 @@ public class UserProfileServiceContainer extends AbstractContainer
 		UserProfileServiceContainer container = new UserProfileServiceContainer();
 		try
 		{
-			container.performSteps();
+			container.performSteps(args);
 		}
 		catch (ContainerException e)
 		{

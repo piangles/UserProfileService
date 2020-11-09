@@ -47,7 +47,7 @@ public final class UserProfileServiceImpl implements UserProfileService
 		BasicUserProfile profile = null;
 		try
 		{
-			logger.info("Updating UserProfile for: " + userId);
+			logger.info("Retriving UserProfile for: " + userId);
 			profile = userProfileDAO.retrieveUserProfile(userId);
 		}
 		catch (DAOException e)

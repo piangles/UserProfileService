@@ -1,6 +1,6 @@
 #!/bin/bash
 
-JAR_FILE=UserProfile.jar
+JAR_FILE=UserProfileService.jar
 PROCESS_NAME=UserProfileService
 
 function printUsage {

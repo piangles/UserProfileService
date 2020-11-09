@@ -2,6 +2,7 @@ package org.piangles.backbone.services.profile.dao;
 
 import org.piangles.backbone.services.config.DefaultConfigProvider;
 import org.piangles.backbone.services.profile.BasicUserProfile;
+import org.piangles.backbone.services.profile.UserProfileService;
 import org.piangles.core.dao.DAOException;
 import org.piangles.core.dao.rdbms.AbstractDAO;
 import org.piangles.core.resources.ResourceManager;
@@ -19,7 +20,7 @@ public class UserProfileDAOImpl extends AbstractDAO implements UserProfileDAO
 
 	public UserProfileDAOImpl() throws Exception
 	{
-		super.init(ResourceManager.getInstance().getRDBMSDataStore(new DefaultConfigProvider("UserProfileService", COMPONENT_ID)));
+		super.init(ResourceManager.getInstance().getRDBMSDataStore(new DefaultConfigProvider(UserProfileService.NAME, COMPONENT_ID)));
 	}
 
 	public void insertUserProfile(String userId, BasicUserProfile profile) throws DAOException
