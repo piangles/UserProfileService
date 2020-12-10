@@ -6,6 +6,7 @@ import org.piangles.core.dao.DAOException;
 public interface UserProfileDAO
 {
 	public void insertUserProfile(String userId, BasicUserProfile profile) throws DAOException;
+	public String searchUserProfile(BasicUserProfile profile) throws DAOException;
 	public BasicUserProfile retrieveUserProfile(String userId) throws DAOException;
 	public void updateUserProfile(String userId, BasicUserProfile profile) throws DAOException;
 }

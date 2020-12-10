@@ -33,7 +33,7 @@ public final class UserProfileServiceImpl implements UserProfileService
 		}
 		catch (IdException | DAOException e)
 		{
-			String message = "Faied creating UserProfile for : " + id + " because of : " + e.getMessage();
+			String message = "Failed creating UserProfile for : " + id + " because of : " + e.getMessage();
 			logger.error(message, e);
 			throw new UserProfileException(message);
 		}
@@ -41,6 +41,25 @@ public final class UserProfileServiceImpl implements UserProfileService
 		return id.getValue();
 	}
 
+	@Override
+	public String searchProfile(BasicUserProfile profile) throws UserProfileException
+	{
+		String userId = null;
+		try
+		{
+			logger.info("Searching for UserProfile.");
+			userId = userProfileDAO.searchUserProfile(profile);
+		}
+		catch (DAOException e)
+		{
+			String message = "Failed searching for UserProfile because of : " + e.getMessage();
+			logger.error(message, e);
+			throw new UserProfileException(message);
+		}
+		
+		return userId;
+	}
+	
 	@Override
 	public BasicUserProfile getProfile(String userId) throws UserProfileException
 	{
@@ -52,7 +71,7 @@ public final class UserProfileServiceImpl implements UserProfileService
 		}
 		catch (DAOException e)
 		{
-			String message = "Faied retriving UserProfile for : " + userId + " because of : " + e.getMessage();
+			String message = "Failed retriving UserProfile for : " + userId + " because of : " + e.getMessage();
 			logger.error(message, e);
 			throw new UserProfileException(message);
 		}
@@ -70,7 +89,7 @@ public final class UserProfileServiceImpl implements UserProfileService
 		}
 		catch (DAOException e)
 		{
-			String message = "Faied updating UserProfile for : " + userId + " because of : " + e.getMessage();
+			String message = "Failed updating UserProfile for : " + userId + " because of : " + e.getMessage();
 			logger.error(message, e);
 			throw new UserProfileException(message);
 		}
