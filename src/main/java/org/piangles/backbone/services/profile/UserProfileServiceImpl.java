@@ -60,6 +60,9 @@ public final class UserProfileServiceImpl implements UserProfileService
 		return userId;
 	}
 	
+	/**
+	 * TODO: The calls below in this service needs a valid session
+	 */
 	@Override
 	public BasicUserProfile getProfile(String userId) throws UserProfileException
 	{
