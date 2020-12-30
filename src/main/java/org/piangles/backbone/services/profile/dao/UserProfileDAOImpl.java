@@ -29,11 +29,12 @@ public class UserProfileDAOImpl extends AbstractDAO implements UserProfileDAO
 	@Override
 	public void insertUserProfile(String userId, BasicUserProfile profile) throws DAOException
 	{
-		super.executeSP(CREATE_PROFILE_SP, 4, (stmt) -> {
+		super.executeSP(CREATE_PROFILE_SP, 5, (stmt) -> {
 			stmt.setString(1, userId);
 			stmt.setString(2, profile.getFirstName());
 			stmt.setString(3, profile.getLastName());
 			stmt.setString(4, profile.getEMailId());
+			stmt.setString(5, profile.getPhoneNo());
 		});
 	}
 
