@@ -30,7 +30,7 @@ import org.piangles.core.dao.DAOException;
 
 public final class UserProfileServiceImpl implements UserProfileService
 {
-	private static final String USER_PROFILE_IDTYPE = "UserProfile";	
+	private static final String USER_ID_TYPE = "UserId";	
 	private LoggingService logger = Locator.getInstance().getLoggingService();
 	private IdService idService	 = Locator.getInstance().getIdService();
 	private UserProfileDAO userProfileDAO = null; 
@@ -46,13 +46,13 @@ public final class UserProfileServiceImpl implements UserProfileService
 		Identifier id = null;
 		try
 		{
-			id = idService.getNextIdentifier(USER_PROFILE_IDTYPE);
+			id = idService.getIdentifier(USER_ID_TYPE);
 			logger.info("Creating a new UserProfile for id:" + id.getValue());
 			userProfileDAO.insertUserProfile(id.getValue(), profile);
 		}
 		catch (IdException | DAOException e)
 		{
-			String message = "Failed creating UserProfile for : " + id + " because of : " + e.getMessage();
+			String message = "Failed creating UserProfile for : " + id.getValue() + " because of : " + e.getMessage();
 			logger.error(message, e);
 			throw new UserProfileException(message);
 		}

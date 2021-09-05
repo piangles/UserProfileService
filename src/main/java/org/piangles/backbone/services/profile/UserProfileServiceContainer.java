@@ -19,12 +19,16 @@
  
 package org.piangles.backbone.services.profile;
 
+import org.piangles.backbone.services.Locator;
+import org.piangles.backbone.services.logging.LoggingService;
 import org.piangles.core.email.EmailSupport;
 import org.piangles.core.services.remoting.AbstractContainer;
 import org.piangles.core.services.remoting.ContainerException;
 
 public class UserProfileServiceContainer extends AbstractContainer
 {
+	private LoggingService logger = Locator.getInstance().getLoggingService();
+	
 	public static void main(String[] args)
 	{
 		UserProfileServiceContainer container = new UserProfileServiceContainer();
@@ -54,6 +58,7 @@ public class UserProfileServiceContainer extends AbstractContainer
 		}
 		catch (Exception e)
 		{
+			logger.fatal("Unable to start " + UserProfileService.NAME + " because : " + e.getMessage(), e);
 			throw new ContainerException(e);
 		}
 		return service;
