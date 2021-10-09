@@ -52,8 +52,8 @@ public final class UserProfileServiceImpl implements UserProfileService
 		}
 		catch (IdException | DAOException e)
 		{
-			String message = "Failed creating UserProfile for : " + id.getValue() + " because of : " + e.getMessage();
-			logger.error(message, e);
+			String message = "Failed creating UserProfile for LoginId: " + profile.getEMailId();
+			logger.error(message + ". Reason: " + e.getMessage(), e);
 			throw new UserProfileException(message);
 		}
 		
@@ -71,8 +71,8 @@ public final class UserProfileServiceImpl implements UserProfileService
 		}
 		catch (DAOException e)
 		{
-			String message = "Failed searching for UserProfile because of : " + e.getMessage();
-			logger.error(message, e);
+			String message = "Failed searching for UserProfile for LoginId: " + profile.getEMailId();
+			logger.error(message + ". Reason: " + e.getMessage(), e);
 			throw new UserProfileException(message);
 		}
 		
@@ -93,8 +93,8 @@ public final class UserProfileServiceImpl implements UserProfileService
 		}
 		catch (DAOException e)
 		{
-			String message = "Failed retriving UserProfile for : " + userId + " because of : " + e.getMessage();
-			logger.error(message, e);
+			String message = "Failed retriving UserProfile for UserId: " + userId;
+			logger.error(message + ". Reason: " + e.getMessage(), e);
 			throw new UserProfileException(message);
 		}
 
@@ -111,8 +111,8 @@ public final class UserProfileServiceImpl implements UserProfileService
 		}
 		catch (DAOException e)
 		{
-			String message = "Failed updating UserProfile for : " + userId + " because of : " + e.getMessage();
-			logger.error(message, e);
+			String message = "Failed updating UserProfile for UserId: " + userId;
+			logger.error(message + ". Reason: " + e.getMessage(), e);
 			throw new UserProfileException(message);
 		}
 	}
