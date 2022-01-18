@@ -41,6 +41,7 @@ public class UserProfileDAOImpl extends AbstractDAO implements UserProfileDAO
 	private static final String EMAIL_ID_VERIFIED = "email_id_verified";
 	private static final String PHONE_NO = "phone_no";
 	private static final String PHONE_NO_VERIFIED = "phone_no_verified";
+	private static final String MFA_ENABLED = "mfa_enabled";
 
 	public UserProfileDAOImpl() throws Exception
 	{
@@ -86,7 +87,8 @@ public class UserProfileDAOImpl extends AbstractDAO implements UserProfileDAO
 										rs.getString(EMAIL_ID),
 										rs.getBoolean(EMAIL_ID_VERIFIED),
 										rs.getString(PHONE_NO),
-										rs.getBoolean(PHONE_NO_VERIFIED));
+										rs.getBoolean(PHONE_NO_VERIFIED),
+										rs.getBoolean(MFA_ENABLED));
 		});
 
 		return profile;
