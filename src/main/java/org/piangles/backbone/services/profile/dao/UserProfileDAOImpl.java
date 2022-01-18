@@ -88,7 +88,7 @@ public class UserProfileDAOImpl extends AbstractDAO implements UserProfileDAO
 										rs.getBoolean(EMAIL_ID_VERIFIED),
 										rs.getString(PHONE_NO),
 										rs.getBoolean(PHONE_NO_VERIFIED),
-										rs.getBoolean(MFA_ENABLED));
+										false);
 		});
 
 		return profile;
