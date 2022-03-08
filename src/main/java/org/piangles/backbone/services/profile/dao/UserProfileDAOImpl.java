@@ -34,7 +34,6 @@ public class UserProfileDAOImpl extends AbstractDAO implements UserProfileDAO
 	private static final String RETRIEVE_PROFILE_SP = "users.retrieve_user_profile";
 
 	private static final int USER_ID_INDEX = 3;
-	private static final String USER_ID = "user_id";
 	private static final String FIRST_NAME = "first_name";
 	private static final String LAST_NAME = "last_name";
 	private static final String EMAIL_ID = "email_id";
@@ -51,7 +50,7 @@ public class UserProfileDAOImpl extends AbstractDAO implements UserProfileDAO
 	@Override
 	public void insertUserProfile(String userId, BasicUserProfile profile) throws DAOException
 	{
-		super.executeSP(SAVE_PROFILE_SP, 7, (stmt) -> {
+		super.executeSP(SAVE_PROFILE_SP, 8, (stmt) -> {
 			stmt.setString(1, userId);
 			stmt.setString(2, profile.getFirstName());
 			stmt.setString(3, profile.getLastName());
@@ -59,6 +58,7 @@ public class UserProfileDAOImpl extends AbstractDAO implements UserProfileDAO
 			stmt.setBoolean(5, profile.isEmailIdVerified());
 			stmt.setString(6, profile.getPhoneNo());
 			stmt.setBoolean(7, profile.isPhoneNoVerified());
+			stmt.setBoolean(8, profile.isMFAEnabled());
 		});
 	}
 
@@ -82,13 +82,14 @@ public class UserProfileDAOImpl extends AbstractDAO implements UserProfileDAO
 		BasicUserProfile profile = super.executeSPQuery(RETRIEVE_PROFILE_SP, 1, (stmt) -> {
 			stmt.setString(1, userId);
 		}, (rs, call) -> {
-			return new BasicUserProfile(rs.getString(FIRST_NAME), 
+			return new BasicUserProfile(userId,
+										rs.getString(FIRST_NAME), 
 										rs.getString(LAST_NAME), 
 										rs.getString(EMAIL_ID),
 										rs.getBoolean(EMAIL_ID_VERIFIED),
 										rs.getString(PHONE_NO),
 										rs.getBoolean(PHONE_NO_VERIFIED),
-										false);
+										rs.getBoolean(MFA_ENABLED));
 		});
 
 		return profile;
@@ -96,7 +97,7 @@ public class UserProfileDAOImpl extends AbstractDAO implements UserProfileDAO
 
 	public void updateUserProfile(String userId, BasicUserProfile profile) throws DAOException
 	{
-		super.executeSP(SAVE_PROFILE_SP, 7, (stmt) -> {
+		super.executeSP(SAVE_PROFILE_SP, 8, (stmt) -> {
 			stmt.setString(1, userId);
 			stmt.setString(2, profile.getFirstName());
 			stmt.setString(3, profile.getLastName());
@@ -104,6 +105,7 @@ public class UserProfileDAOImpl extends AbstractDAO implements UserProfileDAO
 			stmt.setBoolean(5, profile.isEmailIdVerified());
 			stmt.setString(6, profile.getPhoneNo());
 			stmt.setBoolean(7, profile.isPhoneNoVerified());
+			stmt.setBoolean(8, profile.isMFAEnabled());
 		});
 	}
 }
